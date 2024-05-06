@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import Time from './Component/Time';
+import Weather from './Component/Weather';
+import Spotify from './Component/Spotify';
+import Calendar from './Component/Calender';
+import PhotoSlideshow from './Component/PhotoSlideshow';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="widgets">
+        <div className='timeWidget'><Time/></div>
+        <div className='weatherWidget'><Weather/></div>
+        <div className='calendarWidget'><Calendar/></div>
+        <div className='musicWidget'><Spotify/></div>
+      </div>
+      <div className="slideShows"><PhotoSlideshow/></div>
     </div>
   );
 }
