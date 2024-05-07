@@ -1,3 +1,4 @@
+import React from "react";
 import './App.css';
 import Time from './Component/Time';
 import Weather from './Component/Weather';
