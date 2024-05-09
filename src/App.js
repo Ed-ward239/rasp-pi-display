@@ -17,9 +17,6 @@ function App() {
         <div className='musicWidget'><Spotify/></div>
       </div>
       <div className="slideShows"><PhotoSlideshow/></div>
-      <div>
-        <div className="blob"></div>
-      </div>
     </div>
   );
 }
