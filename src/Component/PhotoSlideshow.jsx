@@ -42,7 +42,7 @@ const getRandomDirection = () => {
 function PhotoSlideshow() {
     const [index, setIndex] = useState(0);
     const [direction, setDirection] = useState("right");
-    const [duration, setDuration] = useState(12); // Default duration
+    const [duration, setDuration] = useState(26); // Default duration
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -66,15 +66,15 @@ function PhotoSlideshow() {
                     src={file.url}
                     alt={`slide ${index}`}
                     className={`slide ${direction}`}
-                    onLoad={() => setDuration(12)}
+                    onLoad={() => setDuration(26)}
                 />
             ) : (
                 <video
                     key={index}
                     src={file.url}
                     className={`slide ${direction}`}
-                    autoPlay
-                    loop
+                    autoPlay={true}
+                    loop={false}
                     onLoadedMetadata={handleLoadedMetadata}
                 />
             )}

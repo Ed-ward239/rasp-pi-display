@@ -3,7 +3,7 @@ import './App.css';
 import Time from './Component/Time';
 import Weather from './Component/Weather';
 import Spotify from './Component/Spotify';
-import Calendar from './Component/Calender';
+import Calendar from './Component/Calendar';
 import PhotoSlideshow from './Component/PhotoSlideshow';
 
 
@@ -17,6 +17,9 @@ function App() {
         <div className='musicWidget'><Spotify/></div>
       </div>
       <div className="slideShows"><PhotoSlideshow/></div>
+      <div>
+        <div className="blob"></div>
+      </div>
     </div>
   );
 }

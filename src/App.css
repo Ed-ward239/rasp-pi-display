@@ -6,12 +6,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100%;
-  justify-content: space-around;
-  background: 
-    url(https://images.unsplash.com/photo-1464618663641-bbdd760ae84a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
-    center / cover no-repeat fixed;
-    rotate: 90;
+  background: #091921;
   height: 100vh;
 }
 
@@ -23,25 +18,21 @@
 .widgets{
   display: flex;
   flex-direction: column;
-  width: 80%;
-  margin: 10px;
+  width: 60%;
 }
 
 .timeWidget{
-  height: 50%;
+  height: 40%;
 }
 
 .weatherWidget{
-  border: 1px solid blue;
   height: 25%;
 }
 
 .calendarWidget{
-  border: 1px solid purple;
   height: 25%;
 }
 
 .musicWidget{
-  border: 1px solid green;
   height: 25%;
 }

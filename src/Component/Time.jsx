@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment-timezone";
-import Clock from "react-clock";
+import ReactClock from "react-clock";
 import 'react-clock/dist/Clock.css'
 import './Time.css';
+import { Clock } from '@sujitsimon/react-flipclock';
 
 function Time() {
   const [time, setTime] = useState({
@@ -33,7 +34,7 @@ function Time() {
     const timeDiffLabel = timeDiff >= 0 ? `+${timeDiff} hours` : `${timeDiff} hours`;
     return (
       <div className="clock-container-small">
-        <Clock value={timeZoneDate} size={100} />
+        <ReactClock value={timeZoneDate} size={80} />
         <div>{label}</div>
         <div>{moment(timeZone).format("hh:mm A")}</div>
         <div>{timeDiffLabel} hours</div>
@@ -42,11 +43,8 @@ function Time() {
   };
 
   return (
-    <div>
-      <div className="clock-container">
-        <Clock value={time.local} size={150} />
-        <div>{moment(time.local).format("hh:mm:ss A")}</div>
-      </div>
+    <div className="timeBox">
+      <Clock className="localTime" config={{height: '100px', backgroundColor: 'black', textColor: 'white'}}/>
       <div className="worldClock-container">
         {renderClock("TPE", time.TPE, time.local)}
         {renderClock("YGN", time.YGN, time.local)}

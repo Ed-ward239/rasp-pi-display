@@ -1,6 +1,8 @@
+import './Calendar.css';
+
 function Calendar() {
     return(
-        <div>
+        <div className="calendarBox">
             <h1>Calendar</h1>
         </div>
     )

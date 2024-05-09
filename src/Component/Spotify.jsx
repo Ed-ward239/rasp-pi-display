@@ -1,6 +1,8 @@
+import './Spotify.css'
+
 function Spotify() {
     return(
-        <div>
+        <div className='spotifyBox'>
             <h1>Spotify</h1>
         </div>
     )
