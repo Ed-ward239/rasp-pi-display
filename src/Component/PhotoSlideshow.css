@@ -16,6 +16,7 @@
     object-fit: contain;
     animation: fadeSlide 26s ease-in-out infinite;
     margin: 10px;
+    border-radius: 20px !important;
 }
 
 @keyframes fadeSlide {

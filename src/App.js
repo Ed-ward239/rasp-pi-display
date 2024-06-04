@@ -6,7 +6,6 @@ import Spotify from './Component/Spotify';
 import Calendar from './Component/Calendar';
 import PhotoSlideshow from './Component/PhotoSlideshow';
 
-
 function App() {
   return (
     <div className="App">

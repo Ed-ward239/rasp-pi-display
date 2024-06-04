@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import Sound from 'react-sound';
 import "./PhotoSlideshow.css";
 
 // Public Google Drive file IDs
@@ -30,19 +31,26 @@ const files = fileIDs.map(id => ({
     type: id.type
 }));
 
-const getRandomInt = (max) => {
-    return Math.floor(Math.random() * max);
-};
+const getRandomInt = (max) => Math.floor(Math.random() * max);
 
 const getRandomDirection = () => {
     const directions = ["left", "right", "up", "down"];
     return directions[getRandomInt(directions.length)];
 };
 
+const soundUrls = [
+    "/Sounds/Kiss_the_Rain.mp3",
+    "/Sounds/Canon_in_D.mp3",
+    "/Sounds/River_Flows_in_You.mp3"
+];
+
 function PhotoSlideshow() {
     const [index, setIndex] = useState(0);
     const [direction, setDirection] = useState("right");
     const [duration, setDuration] = useState(26); // Default duration
+    const [playStatus, setPlayStatus] = useState(Sound.status.STOPPED);
+    const [currentSoundIndex, setCurrentSoundIndex] = useState(0);
+    const playButtonRef = useRef(null);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -52,6 +60,22 @@ function PhotoSlideshow() {
         return () => clearInterval(interval);
     }, [index, duration]);
 
+    useEffect(() => {
+        console.log(`Playing audio from: ${soundUrls[currentSoundIndex]}`);
+        if (playButtonRef.current) {
+            playButtonRef.current.click();
+        }
+    }, [currentSoundIndex]);
+
+    const handleSongFinishedPlaying = () => {
+        setCurrentSoundIndex((prevIndex) => (prevIndex + 1) % soundUrls.length);
+        setPlayStatus(Sound.status.PLAYING);
+    };
+
+    const startAudio = () => {
+        setPlayStatus(Sound.status.PLAYING);
+    };
+
     const file = files[index];
 
     const handleLoadedMetadata = (e) => {
@@ -60,6 +84,27 @@ function PhotoSlideshow() {
 
     return (
         <div className="slideshow">
+            <button 
+                onClick={startAudio} 
+                ref={playButtonRef} 
+                style={{ visibility: 'hidden' }}
+            >
+                Play Music
+            </button>
+            <Sound
+                url={soundUrls[currentSoundIndex]}
+                playStatus={playStatus}
+                loop={false}
+                autoLoad={true}
+                volume={15}
+                onLoading={({ bytesLoaded, bytesTotal }) => console.log(`${bytesLoaded} / ${bytesTotal}`)}
+                onLoad={() => console.log('Loaded successfully')}
+                onError={(errorCode) => {
+                    console.error('Sound error:', errorCode);
+                    handleSongFinishedPlaying(); // Move to next sound on error
+                }}
+                onFinishedPlaying={handleSongFinishedPlaying}
+            />
             {file.type.includes("image") ? (
                 <img
                     key={index}
@@ -73,12 +118,12 @@ function PhotoSlideshow() {
                     key={index}
                     src={file.url}
                     className={`slide ${direction}`}
-                    autoPlay={true}
+                    autoPlay
                     loop={false}
+                    muted
                     onLoadedMetadata={handleLoadedMetadata}
                 />
             )}
-            
         </div>
     );
 }
